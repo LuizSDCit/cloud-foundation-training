@@ -14,5 +14,5 @@
  * limitations under the License.
  */
 
-project_id = "" # Insert Project ID here
-region     = "" # Insert Region here
+project_id = "prj-toolkit-luiz" # Insert Project ID here
+region     = "us-central" # Insert Region here
