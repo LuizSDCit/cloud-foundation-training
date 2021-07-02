@@ -36,7 +36,18 @@ provider "google" {
  *
  */
 module "network" {
-
+  source       = "terraform-google-modules/network/google"
+  project_id   = module.project_iam_bindings.projects[0]
+  version      = "~> 3.2.2"
+  network_name = "lab03-vpc"
+  routing_mode = "GLOBAL"
+  subnets = [
+    {
+      subnet_name   = "lab03-subnet-01"
+      subnet_ip     = "10.10.10.0/24"
+      subnet_region = var.region
+    }
+  ]
 }
 
 /**
@@ -53,5 +64,11 @@ module "network" {
  *
  */
 module "cloud_nat" {
-
+  source        = "terraform-google-modules/cloud-nat/google"
+  version       = "~> 1.3.0"
+  project_id    = module.project_iam_bindings.projects[0]
+  region        = var.region
+  create_router = true
+  router        = "lab03-router"
+  network       = module.network.network_name
 }

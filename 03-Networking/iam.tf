@@ -40,5 +40,5 @@ module "project_iam_bindings" {
 }
 
 locals {
-  iam_member = "serviceAccount:sa-cft-training@${var.project_id}.iam.gserviceaccount.com"
+  iam_member = "serviceAccount:cft-onboarding@${var.project_id}.iam.gserviceaccount.com"
 }
