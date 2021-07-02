@@ -41,4 +41,30 @@ provider "google" {
  */
 module "project_iam_bindings" {
 
+source   = "terraform-google-modules/iam/google//modules/projects_iam"
+  version  = "~> 7.1.0"
+  projects = [var.project_id]
+  mode     = "additive"
+
+  bindings = {
+    "roles/cloudfunctions.admin" = [
+      local.iam_member,
+    ]
+    "roles/compute.admin" = [
+      local.iam_member,
+    ]
+    "roles/compute.networkAdmin" = [
+      local.iam_member,
+    ]
+    "roles/iam.serviceAccountAdmin" = [
+      local.iam_member,
+    ]
+    "roles/serviceusage.serviceUsageAdmin" = [
+      local.iam_member,
+    ]
+  }
+}
+
+locals {
+  iam_member = "serviceAccount:cft-onboarding@${var.project_id}.iam.gserviceaccount.com"
 }

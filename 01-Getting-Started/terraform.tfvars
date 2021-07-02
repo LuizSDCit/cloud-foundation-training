@@ -15,4 +15,4 @@
  */
 
 project_id = "prj-toolkit-luiz" # Insert Project ID here
-region     = "us-central" # Insert Region here
+region     = "us-east1" # Insert Region here
